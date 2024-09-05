@@ -1,0 +1,15 @@
+services:
+  node:
+    container_name: pinball_demo
+    image: node:current-slim
+    tty: true
+    stdin_open: true
+    user: "node"
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - "80:80" # next.js dev server
+      - "3001:3001" # socket.io server
+      - "3000:3000" # running in production "builded" mode
+    entrypoint: ./docker-entrypoint.sh
